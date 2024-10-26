@@ -14,7 +14,7 @@ proxy.on('error', (err, req, res) => {
 // Create the HTTP server
 const server = http.createServer((req, res) => {
   // Forward the request to the target server
-  proxy.web(req, res, { target: 'http://de01-4.uniplex.xyz:6210' }, (error) => {
+  proxy.web(req, res, { target: 'http://sgp1.hmvhostings.com:25568' }, (error) => {
     // Handle errors that occur during the proxying process
     console.error('Error while proxying request:', error);
     res.writeHead(502, { 'Content-Type': 'text/plain' });
@@ -23,6 +23,6 @@ const server = http.createServer((req, res) => {
 });
 
 // Start the server
-server.listen(3000, () => {
-  console.log('Proxy server is running on http://localhost:3000');
+server.listen(25568, () => {
+  console.log('Proxy server is running on http://localhost:25568');
 });
