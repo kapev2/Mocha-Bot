@@ -1,10 +1,9 @@
 const http = require('http');
 const httpProxy = require('http-proxy');
 
-// Create a proxy server instance
 const proxy = httpProxy.createProxyServer({});
 
-// Handle connection errors
+// Error handling for proxy
 proxy.on('error', (err, req, res) => {
   console.error('Proxy error:', err);
   res.writeHead(502, { 'Content-Type': 'text/plain' });
@@ -12,10 +11,9 @@ proxy.on('error', (err, req, res) => {
 });
 
 // Create the HTTP server
+const PORT = process.env.PORT || 8080;
 const server = http.createServer((req, res) => {
-  // Forward the request to the target server
   proxy.web(req, res, { target: 'http://sgp1.hmvhostings.com:25568' }, (error) => {
-    // Handle errors that occur during the proxying process
     console.error('Error while proxying request:', error);
     res.writeHead(502, { 'Content-Type': 'text/plain' });
     res.end('Bad Gateway');
@@ -23,6 +21,6 @@ const server = http.createServer((req, res) => {
 });
 
 // Start the server
-server.listen(25568, () => {
-  console.log('Proxy server is running on http://localhost:25568');
+server.listen(PORT, () => {
+  console.log(`Proxy server is running on http://localhost:${PORT}`);
 });
