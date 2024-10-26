@@ -13,7 +13,7 @@ proxy.on('error', (err, req, res) => {
 // Create the HTTP server
 const PORT = process.env.PORT || 8080;
 const server = http.createServer((req, res) => {
-  proxy.web(req, res, { target: 'http://sgp1.hmvhostings.com:25568' }, (error) => {
+  proxy.web(req, res, { target: 'http://152.42.220.111:25568' }, (error) => {
     console.error('Error while proxying request:', error);
     res.writeHead(502, { 'Content-Type': 'text/plain' });
     res.end('Bad Gateway');
